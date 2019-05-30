@@ -21,11 +21,11 @@ app.use(
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db)
     console.log('data is flowing')
+    app.listen(SERVER_PORT, () => console.log(`Doing the stuff on port ${SERVER_PORT}`))
 })
 
 app.post('/auth/register', auth_ctrl.register)
 app.post('/auth/login', auth_ctrl.login)
 app.get('/auth/details', auth_ctrl.getDetails)
-
-
-app.listen(SERVER_PORT, () => console.log(`Doing the stuff on port ${SERVER_PORT}`))
+app.get('/auth/user', auth_ctrl.getUser)
+app.get('/auth/logout', auth_ctrl.logout)
